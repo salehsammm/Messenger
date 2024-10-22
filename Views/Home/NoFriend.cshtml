@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "NoFriend";
+}
+
+
+<div class="outer-Container">
+    <div class="main1">
+        <div class="red-box">
+            <p>شما هیچ مخاطبی ندارید.</p>
+            <p>میتوانید با استفاده از لینک زیر مخاطبینتان را به اکانت خود اضافه کنید.</p>
+            @Html.ActionLink("افزودن مخاطب", "AddFriend", "Home", new {@class = "Add-button"})
+        </div>
+        
+    </div>
+</div>
+
+

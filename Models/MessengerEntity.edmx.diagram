@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6111623c24eb4576a66ef769f5a6b690" Name="Diagram1">
+        <EntityTypeShape EntityType="Messenger_DbModel.Group" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Messenger_DbModel.GroupUser" Width="1.5" PointX="8" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Messenger_DbModel.MessageReply" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Messenger_DbModel.Message" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Messenger_DbModel.sysdiagram" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Messenger_DbModel.UserFriend" Width="1.5" PointX="3.125" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Messenger_DbModel.User" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="Messenger_DbModel.FK_GroupUsers_Groups_GroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="Messenger_DbModel.FK_Messages_Groups_GroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="Messenger_DbModel.FK_GroupUsers_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Messenger_DbModel.FK_Messages_Users_ReceiverId" ManuallyRouted="false" />
+        <AssociationConnector Association="Messenger_DbModel.FK_Messages_Users_SenderId" ManuallyRouted="false" />
+        <AssociationConnector Association="Messenger_DbModel.FK_UserFriends_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Messenger_DbModel.FK_UserFriends_Users1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

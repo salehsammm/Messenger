@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="outer-Container">
+    <div class="box sidebar2">
+        <div class="sidebar1-title">
+            <div class="nameandicon">
+                <p>گروه ها:</p>
+            </div>
+            <div class="nameandicon">
+                <a href="~/Group/MakeGroup" class="sidebar1-title-icon" title="ساختن گروه">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+
+        <div ng-repeat="item in groups">
+            <div class="user-button-container">
+                <a ng-click="selectGp(item.GroupId)"
+                   class="user-button"
+                   ng-class="{'user-button-selected': item.GroupId === groupId}">
+                    <div class="button-user-pic">
+                        <i class="fa fa-user-circle"></i>
+                        <div class="button-user-name">{{item.GroupName}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main1">
+        <div class="name-of-user">
+            <div class="nameandicon">
+                <i class="fa fa-user-circle"></i>
+                <p></p>
+                <p class="friendName-" id="GpName" ng-hide="editingName">{{groupName}}</p>
+                <input type="text" placeholder="نام جدید گروه خود را وارد کنید" ng-model="groupName" ng-show="editingName" />
+            </div>
+            <div ng-if="IsAdmin" class="nameandicon">
+                <a ng-click="EditGpName()" class="button-edit-icon" title="ویرایش نام گروه">
+                    <i class="fa" ng-class="editingName ? 'fa-check' : 'fa-pencil'" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <div id="messageContainer">
+            <div ng-repeat="item in Messages">
+                <div ng-if="item.SenderId===userId" class="message-box m-send">
+                    <div class="message-text"> {{item.MessageText}} </div>
+                    <div class="message-info">
+                        <span class="message-seen">{{item.SeenStatus ? '✓✓' : '✓'}}</span>
+                        <span class="message-date"> {{item.MessageTime}} </span>
+                    </div>
+                </div>
+
+                <div ng-if="item.SenderId !== userId" class="message-box m-receive">
+                    <div class="message-text">{{item.MessageText}} </div>
+                    <div class="message-info">
+                        <span class="message-date">{{item.MessageTime}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <div class="input-container">
+                <input class="type-message" id="send-input" ng-keypress="checkEnter($event)" type="text" ng-model="message" placeholder="پیام خود را تایپ کنید" />
+                <a ng-click="sendM()" class="send-icon" id="send-button" title="ارسال">
+                    <i class="fa fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="box sidebar3">
+        <div class="sidebar1-title">
+            <div class="nameandicon">
+                <p>اعضا:</p>
+            </div>
+            <div class="nameandicon">
+                <a ng-if="IsAdmin" ng-click="ShowUsers()" class="sidebar1-title-icon" title="افزودن عضو">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <div id="GpUsersContainer">
+            <div class="user-button2">
+                {{UserFullName}}
+            </div>
+
+            <div ng-repeat="item in groupMembers">
+                <div class="user-button2">
+                    {{item.FullName}}
+                    <a ng-if="IsAdmin" ng-click="ShowModal(item.UserId)" class="button-edit-icon" title="حذف عضو‌">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="myModal" class="modall">
+    <div class="mod-content">
+        @*<div>
+                <h4>
+                    افزودن اعضا به {{groupName}} :
+                </h4>
+            </div>*@
+
+        <div class="box limit-h">
+            <div ng-repeat="item in filteredFriends">
+                <div class="user-button-container">
+                    <a ng-click="selectFriend(item.FriendId)"
+                       class="user-button ub-modal"
+                       ng-class="{'user-button-selected': selectedFriends.indexOf(item.FriendId) !== -1}">
+                        <div class="button-user-pic">
+                            <i class="fa fa-user-circle"></i>
+                            <div class="button-user-name">{{item.FullName}}</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="div1">
+            <input type="button" value="افزودن اعضا" class="input-submit" ng-click="AddUserToGp()">
+        </div>
+
+    </div>
+</div>
+
+<div class="modall2" id="myModal2" ng-show="showDeleteModal">
+    <div class="modal-content2">
+        <p>آیا از حذف این فرد از گروه مطمئن هستید؟</p>
+        <button ng-click="deleteFriend()">بلی</button>
+        <button ng-click="cancelDelete()">خیر</button>
+    </div>
+</div>
+
+@section Script{
+    <script src="~/Content/Scripts/User_Group.js"></script>
+}
+
+
+
+

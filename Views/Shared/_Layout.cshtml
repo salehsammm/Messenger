@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link href="~/Content/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Css/Site.css" rel="stylesheet" />
+    <link href="~/Content/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+</head>
+<body dir="rtl" class="body-container">
+    <div class="lyt-header">
+        @if (!(Session["UserPhoneNumber"] == null))
+        {
+            <div class="item-1">
+                <a href="~/chat/Index" class="lyt-link">صفحه چت</a>
+                @*<a href="~/Friend/Index" class="lyt-link">افزودن مخاطب</a>*@
+                <a href="~/Group/Index" class="lyt-link">گروه ها</a>
+                @*<a href="~/Group/MakeGroup" class="lyt-link">ساختن گروه</a>*@
+
+            </div>
+            <div>
+                <p class="lyt-title">@Session["Name"]</p>
+            </div>
+            <div class="item-1">
+                <a href="~/login/LogOut" class="lyt-link">خروج</a>
+            </div>
+        }
+        else
+        {
+            <div class="item-1">
+                <a href="~/Login/Index" class="lyt-link">ورود</a>
+                <a href="~/Register/Index" class="lyt-link">ثبت نام</a>
+            </div>
+            <div>
+                <p class="lyt-title">فراوین</p>
+            </div>
+            <div>
+            </div>
+        }
+    </div>
+
+
+    <div class=" body-content" ng-app="MyApp" ng-controller="MyCtrl">
+        @RenderBody()
+    </div>
+
+    <footer>
+    </footer>
+
+    <script src="~/Content/lib/jquery/dist/jquery.js"></script>
+    <script src="~/Content/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/lib/Angular JS/angular.js"></script>
+    <script src="~/Content/lib/Angular JS/angular.min.js"></script>
+    <script src="~/Content/Site.js"></script>
+</body>
+</html>
+
+@RenderSection("Script", required: false)

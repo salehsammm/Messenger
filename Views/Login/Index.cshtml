@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="form-1">
+    <h1 class="h1_1">صفحه ورود</h1>
+    <p id="sss" ng-class="{'red-info': messageType === 'error', 'green-info': messageType === 'success'}" ng-show="message">{{ message }}</p>
+
+
+    <div class="div1">
+        <label>موبایل :</label>
+        <input type="text" maxlength="11" ng-model="PhoneNumber" ng-keypress="checkEnter($event)" autofocus />
+    </div>
+    <div class="div1">
+        <label>رمز عبور :</label>
+        <input type="password" maxlength="11" min="6" ng-model="Password" ng-keypress="checkEnter($event)" />
+    </div>
+    <div class="div1 Remember-container">
+        <input type="checkbox" class="chBox-Remember" ng-model="RememberMe" />
+        <label>من را به خاطر بسپار</label>
+    </div>
+    <div class="div1">
+        <input type="reset" value=" انصراف">
+        <input type="button" value="ورود" class="input-submit submit-login" ng-click="Login_Users()">
+    </div>
+</div>
+
+@section Script{
+    <script src="~/Content/Scripts/User_Login.js"></script>
+}
+
+
+
+
+
+

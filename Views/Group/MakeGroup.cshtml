@@ -1,0 +1,36 @@
+﻿@model Messenger.Models.ChatViewModel
+
+@{
+    ViewBag.Title = "MakeGroup";
+}
+
+<p id="sss" ng-class="{'red-info': messageType === 'error', 'green-info': messageType === 'success'}" ng-show="message">{{ message }}</p>
+
+<div class="div1">
+    <label>نام گروه :</label>
+    <input type="text" maxlength="500" ng-model="GpName">
+</div>
+
+<div class="box sidebar1 limit-h">
+    <div ng-repeat="item in friends">
+        <div class="user-button-container">
+            <a ng-click="selectFriend(item.FriendId)"
+               class="user-button"
+               ng-class="{'user-button-selected': selectedFriends.indexOf(item.FriendId) !== -1}">
+                <div class="button-user-pic">
+                    <i class="fa fa-user-circle"></i>
+                    <div class="button-user-name">{{item.FullName}}</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="div1">
+    <input type="button" value="ساختن گروه" class="input-submit submit-login" ng-click="GpMake()">
+</div>
+
+
+@section Script{
+    <script src="~/Content/Scripts/User_Group.js"></script>
+}

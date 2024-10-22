@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="outer-Container">
+    <div class="box sidebar1">
+        <div class="sidebar1-title">
+            <div class="nameandicon">
+                <p>مخاطبین</p>
+            </div>
+            <div class="nameandicon">
+                <a href="~/Friend/Index" class="sidebar1-title-icon" title="افزودن مخاطب">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+                @*<a ng-click="refreshFriends()" class="sidebar1-title-icon" title="به‌روزرسانی مخاطبین">
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                    </a>*@
+            </div>
+        </div>
+        <div ng-repeat="item in friends">
+            <div class="user-button-container">
+                <a ng-click="selectFriend(item.FriendId)"
+                   class="user-button"
+                   ng-class="{'user-button-selected': item.FriendId === selectedId}">
+                    <div class="button-user-pic">
+                        <i class="fa fa-user-circle"></i>
+                        <div class="button-user-name">{{item.FullName}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main1">
+        <div class="name-of-user">
+            <div class="nameandicon">
+                <i class="fa fa-user-circle"></i>
+                <p class="friendName-" id="friendName" ng-hide="editingName">{{friendName}}</p>
+                <input type="text" placeholder="نام جدید مخاطب خود را وارد کنید" ng-model="friendName" ng-show="editingName" />
+
+            </div>
+            <div class="nameandicon">
+                <a ng-click="ShowPhoneNumber()" class="button-edit-icon" title="شماره تلفن" ng-hide="editingName">
+                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                </a>
+
+                <a ng-click="editFriend()" class="button-edit-icon" title="ویرایش مخاطب">
+                    <i class="fa" ng-class="editingName ? 'fa-check' : 'fa-pencil'" aria-hidden="true"></i>
+                </a>
+
+                <a ng-click="ShowModal()" class="button-edit-icon" title="حذف مخاطب‌" ng-hide="editingName">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+
+            </div>
+        </div>
+
+    <div id="messageContainer">
+        <div ng-repeat="item in Messages">
+            <div ng-if="item.ReceiverId===selectedId" class="message-box m-send">
+                <div class="message-text"> {{item.MessageText}} </div>
+                <div class="message-info">
+                    <span class="message-seen">{{item.SeenStatus ? '✓✓' : '✓'}}</span>
+                    <span class="message-date"> {{item.MessageTime}} </span>
+                </div>
+            </div>
+
+            <div ng-if="item.SenderId == selectedId" class="message-box m-receive">
+                <div class="message-text">{{item.MessageText}} </div>
+                <div class="message-info">
+                    <span class="message-date">{{item.MessageTime}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="input-container">
+            <input class="type-message" id="send-input" ng-keypress="checkEnter($event)" type="text" ng-model="message" placeholder="پیام خود را تایپ کنید" />
+            <a ng-click="sendM()" class="send-icon" id="send-button" title="ارسال">
+                <i class="fa fa-paper-plane"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="modall2" id="myModal" ng-show="showDeleteModal">
+    <div class="modal-content2">
+        <p>آیا از حذف این مخاطب مطمئن هستید؟</p>
+        <button ng-click="deleteFriend(selectedId)">بلی</button>
+        <button ng-click="cancelDelete()">خیر</button>
+    </div>
+</div>
+
+<div class="modall2" id="myModal" ng-show="showPhoneModal">
+    <div class="modal-content2">
+        <p>شماره موبایل {{friendName}} :</p>
+        <p>{{friendMobile}}</p>
+        <button ng-click="cancelDelete()">OK</button>
+    </div>
+</div>
+
+@section Script{
+    <script src="~/Content/Scripts/User_Chat.js"></script>
+}
+
+
+
+

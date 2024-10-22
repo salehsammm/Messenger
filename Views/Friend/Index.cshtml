@@ -1,0 +1,25 @@
+﻿@model Messenger.Models.AddFreindViewModel
+
+
+@ViewBag.Title = "Index";
+
+<div class="form-1">
+    <h1 class="h1_1">افزودن مخاطب</h1>
+    <p id="sss" ng-class="{'red-info': messageType === 'error', 'green-info': messageType === 'success'}" ng-show="message">{{ message }}</p>
+
+    <div class="div1">
+        <label>موبایل :</label>
+        <input type="text" maxlength="11" ng-model="PhoneNumber" autofocus ng-keypress="checkEnter($event)" />
+    </div>
+    <div class="div1">
+        <label>نام :</label>
+        <input type="text" maxlength="50" ng-model="FullName" ng-keypress="checkEnter($event)" />
+    </div>
+    <div class="div1">
+        <input type="button" value="افزودن مخاطب" class="input-submit AddFriend-submit" ng-click="AddFriend()">
+    </div>
+</div>
+
+@section Script{
+    <script src="~/Content/Scripts/User_Friend.js"></script>
+}

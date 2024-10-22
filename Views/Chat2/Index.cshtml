@@ -1,0 +1,40 @@
+﻿@model Messenger.Models.ChatViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Chat2</h2>
+<div class="outer-Container">
+    <div class="box sidebar1">
+        @foreach (var item in Model.Friends)
+        {
+            <a ng-click="selectFriend(@item.FriendId)"
+             class="user-button"
+             ng-class="{'user-button-selected': @item.FriendId === selectedId}" >
+                @item.FullName
+            </a>
+        }
+    </div>
+
+    <div class="box main1">
+        <div class="name-of-user">
+            <p id="friendName"></p>
+        </div>
+
+        <div id="messageContainer">
+
+        </div>
+
+        <div class="input-container">
+            <input class="type-message" type="text" ng-model="message" placeholder="پیام خود را تایپ کنید" />
+            <input type="button" value="ارسال" class="send-button" ng-click="sendM()" />
+        </div>
+    </div>
+</div>
+
+@section Script{
+    <script src="~/Content/Scripts/User_Chat2.js"></script>
+}
+
+

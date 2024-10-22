@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="form-1">
+    <h1 class="h1_1"> صفحه ثبت نام </h1>
+    <p id="sss" ng-class="{'red-info': messageType === 'error', 'green-info': messageType === 'success'}" ng-show="message">{{ message }}</p>
+
+    <div class="div1">
+        <label>نام :</label>
+        <input type="text" maxlength="50" ng-model="Fname" autofocus />
+    </div>
+
+    <div class="div1">
+        <label>نام خانوادگی :</label>
+        <input type="text" maxlength="100" ng-model="Lname">
+    </div>
+
+    <div class="div1">
+        <label>جنسیت:</label>
+        <select class="select-box" ng-model="Gender">
+            <option value="True">مرد</option>
+            <option value="False">زن</option>
+        </select>
+    </div>
+
+    <div class="div1">
+        <label>موبایل :</label>
+        <input type="text" maxlength="11" id="Reg2-PhoneNumber" ng-model="PhoneNumber" />
+    </div>
+
+    <div class="div1">
+        <label>نام کاربری :</label>
+        <input type="text" maxlength="11" disabled id="Reg2-Username" ng-model="Username" />
+    </div>
+
+    <div class="div1">
+        <label>کلمه عبور :</label>
+        <input type="password" maxlength="11" min="6" ng-model="Password" />
+    </div>
+
+    <div class="div1">
+        <label>تکرار کلمه عبور :</label>
+        <input type="password" maxlength="11" min="6" ng-model="RePassword" ng-keypress="checkEnter($event)" />
+    </div>
+
+    <div class="div1">
+
+        <input type="reset" value=" انصراف">
+        <input type="button" value="ثبت نام" class="input-submit submit-login" ng-click="Register_Users()">
+    </div>
+</div>
+
+@section Script{
+    <script src="~/Content/Scripts/User_Register.js"></script>
+}
+
+
+

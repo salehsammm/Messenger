@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "AddUserToGp";
+}
+
+<div>
+    <h3>
+        افزودن اعضا:
+    </h3>
+    <h4>
+        گروه : {{groupName}}
+    </h4>
+</div>
+
+<div class="box sidebar1 limit-h">
+    <div ng-repeat="item in filteredFriends">
+        <div class="user-button-container">
+            <a ng-click="selectFriend(item.FriendId)"
+               class="user-button"
+               ng-class="{'user-button-selected': selectedFriends.indexOf(item.FriendId) !== -1}">
+                <div class="button-user-pic">
+                    <i class="fa fa-user-circle"></i>
+                    <div class="button-user-name">{{item.FullName}}</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="div1">
+    <p id="sss"></p>
+    <input type="button" value="افزودن اعضا" class="input-submit submit-login" ng-click="GpMake()">
+</div>
+
+
+@section Script{
+    <script src="~/Content/Scripts/User_Group.js"></script>
+}
+

@@ -1,0 +1,52 @@
+﻿@model Messenger.Models.ChatViewModel
+
+@{
+    ViewBag.Title = "Chat_Page";
+}
+
+<div class="outer-Container">
+
+    <div class="box sidebar1">
+        @foreach (var item in Model.Friends)
+        {
+            if (item.FriendId == Model.SelectedFriend.FriendId)
+            {
+                @Html.ActionLink(item.FullName, "Chat_Page", "Home", new { selectedId = item.FriendId }, new { @class = "user-button-selected" })
+
+            }
+            else
+            {
+                @Html.ActionLink(item.FullName, "Chat_Page", "Home", new { selectedId = item.FriendId }, new { @class = "user-button" })
+            }
+        }
+    </div>
+
+    <div class="box main1">
+        <div class="name-of-user">
+            @Model.SelectedFriend.FullName
+        </div>
+
+        @foreach (var item in Model.Messages)
+        {
+            if (item.ReceiverId == Model.SelectedFriend.FriendId)
+            {
+                <div class="message m-send">
+                    @item.MessageText
+                </div>
+            }
+             else if(item.SenderId == Model.SelectedFriend.FriendId)
+            {
+                <div class="message m-receive">
+                    @item.MessageText
+                </div>
+            }
+        }
+
+        @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { @class = "input-container" }))
+        {
+            @Html.Hidden("selectedId", Model.SelectedFriend.FriendId)
+            <input class="type-message" type="text" name="message" placeholder="پیام خود را تایپ کنید" />
+            <input type="submit" value="ارسال" class="send-button" />
+        }
+    </div>
+</div>

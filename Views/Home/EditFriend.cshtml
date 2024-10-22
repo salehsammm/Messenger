@@ -1,0 +1,26 @@
+﻿@model Messenger.Models.AddFreindViewModel
+
+@{
+    ViewBag.Title = "EditFriend";
+}
+
+@using (Html.BeginForm("AddFriend", "Home", FormMethod.Post, new { @class = "form-1" }))
+{
+    <h1 class="h1_1">ویرایش مخاطب</h1>
+
+    <div class="div1">
+        @Html.LabelFor(m => m.PhoneNumber)
+        @Html.EditorFor(m => m.PhoneNumber, new {@readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @Html.LabelFor(m => m.FullName)
+        @Html.EditorFor(m => m.FullName)
+        @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @*<input type="reset" value=" انصراف">*@
+        <input type="submit" value="افزودن مخاطب" class="input-submit AddFriend-submit">
+    </div>
+}
+

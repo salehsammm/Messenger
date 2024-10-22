@@ -1,0 +1,35 @@
+﻿@model  Messenger.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-1" }))
+{
+    <h1 class="h1_1">صفحه ورود</h1>
+
+    <div class="div1">
+        @Html.LabelFor(m => m.PhoneNumber)
+        @Html.EditorFor(m => m.PhoneNumber)
+        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @Html.EditorFor(m => m.RememberMe, new { @class = "chBox-Remember" })
+        @Html.LabelFor(m => m.RememberMe)
+        @Html.ValidationMessageFor(m => m.RememberMe, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        <input type="reset" value=" انصراف">
+        <input type="submit" value="ورود" class="input-submit submit-login">
+    </div>
+    <div>
+        @Html.ActionLink("ثبت نام", "Register", "Home", new {@class = "link-ToRegister" })
+    </div>
+}
+
+

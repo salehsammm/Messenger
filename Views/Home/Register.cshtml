@@ -1,0 +1,61 @@
+﻿@model  Messenger.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-1" }))
+{
+    <h1 class="h1_1">صفحه ثبت نام</h1>
+
+    <div class="div1">
+        @Html.LabelFor(m => m.Fname)
+        @Html.EditorFor(m => m.Fname)
+        @Html.ValidationMessageFor(m => m.Fname, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @Html.LabelFor(m => m.Lname)
+        @Html.EditorFor(m => m.Lname)
+        @Html.ValidationMessageFor(m => m.Lname, "", new { @class = "text-danger" })
+    </div>
+    @*<div class="div1">
+            @Html.LabelFor(m => m.Gender)
+            @Html.DropDownListFor(m => m.Gender, Model.GenderOptions, new { @class = "select-box" })
+            @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+        </div>*@
+    <div class="div1">
+        <label>جنسیت:</label>
+        <select name="gender" class="select-box">
+            <option value="Male">مرد</option>
+            <option value="Female">زن</option>
+        </select>
+    </div>
+    <div class="div1">
+        @Html.LabelFor(m => m.PhoneNumber)
+        @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { id = "reg-PhoneNumber" } })
+        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @Html.LabelFor(m => m.UserName)
+        @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { id = "reg-UserName", @disabled = "disabled" } })
+        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        @Html.LabelFor(m => m.RePassword)
+        @Html.EditorFor(m => m.RePassword)
+        @Html.ValidationMessageFor(m => m.RePassword, "", new { @class = "text-danger" })
+    </div>
+    <div class="div1">
+        <input type="reset" value=" انصراف">
+        <input type="submit" value="ثبت نام" class="input-submit submit-login">
+    </div>
+    <div>
+        @Html.ActionLink("ورود", "Login", "Home", new { @class = "link-ToRegister" })
+    </div>
+}
+
